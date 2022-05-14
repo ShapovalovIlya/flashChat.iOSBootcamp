@@ -372,8 +372,11 @@
             <point key="canvasLocation" x="-4.3478260869565224" y="134.59821428571428"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="y7D-jv-BlJ"/>
+    </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="IiZ-as-YC4"/>
+        <segue reference="oAy-9H-L71"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>
