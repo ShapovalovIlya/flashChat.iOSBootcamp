@@ -271,7 +271,7 @@
             </objects>
             <point key="canvasLocation" x="1671.0144927536232" y="450.66964285714283"/>
         </scene>
-        <!--Chat View Controller-->
+        <!--Title-->
         <scene sceneID="yeH-Ia-3JZ">
             <objects>
                 <viewController id="lwd-AH-u8E" customClass="ChatViewController" customModule="Flash_Chat_iOS13" customModuleProvider="target" sceneMemberID="viewController">
@@ -343,7 +343,13 @@
                             <constraint firstItem="S6L-hg-cne" firstAttribute="top" secondItem="6YX-ca-E8f" secondAttribute="top" id="sQt-L5-8LV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Q5u-eL-Bgp"/>
+                    <navigationItem key="navigationItem" title="Title" id="cUl-Vx-jjf">
+                        <barButtonItem key="rightBarButtonItem" title="LogOut" id="xIL-Dj-NA5">
+                            <connections>
+                                <action selector="logOutPressed:" destination="lwd-AH-u8E" id="Khp-qx-1zj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="messageTextfield" destination="UWj-GQ-Vph" id="INS-Xk-EA9"/>
                         <outlet property="tableView" destination="S6L-hg-cne" id="dTJ-K9-WAe"/>
@@ -376,7 +382,7 @@
         <designable name="y7D-jv-BlJ"/>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="oAy-9H-L71"/>
+        <segue reference="IiZ-as-YC4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>

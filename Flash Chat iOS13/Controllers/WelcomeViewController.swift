@@ -11,8 +11,10 @@ import CLTypingLabel
 
 class WelcomeViewController: UIViewController {
 
+    //MARK: - IBOutlets
     @IBOutlet weak var titleLabel: CLTypingLabel!
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
