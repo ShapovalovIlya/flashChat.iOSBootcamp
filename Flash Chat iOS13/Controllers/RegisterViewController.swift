@@ -3,6 +3,7 @@
 //  Flash Chat iOS13
 //
 //  Created by Angela Yu on 21/10/2019.
+//  Created by Илья Шаповалов on 15.05.2022.
 //  Copyright © 2019 Angela Yu. All rights reserved.
 //
 
@@ -24,7 +25,7 @@ class RegisterViewController: UIViewController {
                     self.errorAlert(message: localizedError)
                 } else {
                     // Navigate to the ChatViewController
-                    self.performSegue(withIdentifier: "RegisterToChat", sender: self)
+                    self.performSegue(withIdentifier: K.registerSegue, sender: self)
                 }
             }
         }
