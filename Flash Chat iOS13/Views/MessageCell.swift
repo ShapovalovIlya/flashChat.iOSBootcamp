@@ -14,6 +14,7 @@ class MessageCell: UITableViewCell {
     @IBOutlet weak var messageBuble: UIView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var rightImageView: UIImageView!
+    @IBOutlet weak var leftImageView: UIImageView!
     
     //MARK: - Lifecycle
     override func awakeFromNib() {

@@ -55,8 +55,11 @@ class ChatViewController: UIViewController {
                             let newMessage = Message(sender: messageSender, body: messageBody)
                             self.messages.append(newMessage)
                             
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
+                            DispatchQueue.main.async { [self] in
+                                tableView.reloadData()
+                                let indexPath = IndexPath(row: messages.count - 1, section: 0)
+                                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                                
                             }
                         }
                     }
@@ -80,10 +83,12 @@ class ChatViewController: UIViewController {
                     print("There was an issue saving data to firestore, \(error)")
                 } else {
                     print("Succesfully saved data!")
+                    DispatchQueue.main.async {
+                        self.messageTextfield.text?.removeAll()
+                    }
                 }
             }
         }
-        messageTextfield.text?.removeAll()
     }
     
     @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
@@ -108,8 +113,25 @@ extension ChatViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let message = messages[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageCell
-        cell.messageLabel.text = messages[indexPath.row].body
+        cell.messageLabel.text = message.body
+        
+        // Message from current user
+        if message.sender == Auth.auth().currentUser?.email {
+            cell.leftImageView.isHidden = true
+            cell.rightImageView.isHidden = false
+            cell.messageBuble.backgroundColor = UIColor(named: K.BrandColors.lightPurple)
+            cell.messageLabel.textColor = UIColor(named: K.BrandColors.purple)
+        } else {
+            // Message from another sender
+            cell.leftImageView.isHidden = false
+            cell.rightImageView.isHidden = true
+            cell.messageBuble.backgroundColor = UIColor(named: K.BrandColors.purple)
+            cell.messageLabel.textColor = UIColor(named: K.BrandColors.lightPurple)
+        }
+        
         return cell
     }
         
