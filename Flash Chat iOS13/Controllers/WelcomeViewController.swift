@@ -11,7 +11,7 @@ import UIKit
 import CLTypingLabel
 
 class WelcomeViewController: UIViewController {
-
+    
     //MARK: - IBOutlets
     @IBOutlet weak var titleLabel: CLTypingLabel!
     
@@ -23,9 +23,9 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         titleLabel.text = K.appName
-       
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -33,5 +33,5 @@ class WelcomeViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
-
+    
 }

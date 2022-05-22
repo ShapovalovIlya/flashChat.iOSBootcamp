@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class ChatViewController: UIViewController {
-
+    
     //MARK: - IBOutlet
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
@@ -24,7 +24,7 @@ class ChatViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.dataSource = self
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
         
@@ -40,31 +40,30 @@ class ChatViewController: UIViewController {
         db.collection(K.FStore.collectionName)
             .order(by: K.FStore.dateField)
             .addSnapshotListener { quetySnapshot, error in
-            
+                
                 self.flashChanModel.messages = []
-            
-            if let error = error {
-                print("Error in retrieving data from Firestore. \(error)")
-            } else {
-                if let snapshotDocuments = quetySnapshot?.documents {
+                
+                if let error = error {
+                    print("Error in retrieving data from Firestore. \(error)")
+                } else {
+                    guard let snapshotDocuments = quetySnapshot?.documents else { return }
                     for document in snapshotDocuments {
                         let data = document.data()
-                        if let messageSender = data[K.FStore.senderField] as? String,
-                           let messageBody = data[K.FStore.bodyField] as? String {
-                            let newMessage = Message(sender: messageSender, body: messageBody)
-                            self.flashChanModel.messages.append(newMessage)
-                            
-                            DispatchQueue.main.async { [self] in
-                                tableView.reloadData()
-                                let indexPath = IndexPath(row: flashChanModel.messages.count - 1, section: 0)
-                                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                            }
+                        guard let messageSender = data[K.FStore.senderField] as? String else { return }
+                        guard let messageBody = data[K.FStore.bodyField] as? String else { return }
+                        let newMessage = Message(sender: messageSender, body: messageBody)
+                        self.flashChanModel.messages.append(newMessage)
+                        
+                        DispatchQueue.main.async { [self] in
+                            tableView.reloadData()
+                            let indexPath = IndexPath(row: flashChanModel.messages.count - 1, section: 0)
+                            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                         }
+                        
                     }
                 }
+                
             }
-            
-        }
         
     }
     
@@ -98,7 +97,7 @@ class ChatViewController: UIViewController {
             errorAlert(message: error)
         }
         
-      }
+    }
     
     //MARK: - errorAlert(_:)
     private func errorAlert(message: String) {
@@ -133,7 +132,7 @@ extension ChatViewController: UITableViewDataSource {
         
         return cell
     }
-        
+    
 }
 
 
