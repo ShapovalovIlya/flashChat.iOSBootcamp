@@ -90,9 +90,23 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
-        flashChanModel.logOut()
-        navigationController?.popToRootViewController(animated: true)
+        do {
+            try Auth.auth().signOut()
+            navigationController?.popToRootViewController(animated: true)
+        } catch {
+            let error = error.localizedDescription
+            errorAlert(message: error)
+        }
+        
       }
+    
+    //MARK: - errorAlert(_:)
+    private func errorAlert(message: String) {
+        let alertController = UIAlertController(title: "Warning!", message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Ok", style: .default)
+        alertController.addAction(alertAction)
+        present(alertController, animated: true)
+    }
     
 }
 
