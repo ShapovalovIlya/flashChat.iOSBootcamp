@@ -17,7 +17,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
     
-    //MARK: - Public Properties
+    //MARK: - Privat Properties
     let db = Firestore.firestore()
     var flashChanModel = FlashChatModel()
     
@@ -70,7 +70,7 @@ class ChatViewController: UIViewController {
     //MARK: - IBActions
     @IBAction func sendPressed(_ sender: UIButton) {
         
-        if let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email {
+        guard let messageBody = messageTextfield.text, let messageSender = Auth.auth().currentUser?.email else { return }
             db.collection(K.FStore.collectionName).addDocument(data: [
                 K.FStore.senderField: messageSender,
                 K.FStore.bodyField: messageBody,
@@ -85,7 +85,7 @@ class ChatViewController: UIViewController {
                     }
                 }
             }
-        }
+        
     }
     
     @IBAction func logOutPressed(_ sender: UIBarButtonItem) {
@@ -94,9 +94,8 @@ class ChatViewController: UIViewController {
             navigationController?.popToRootViewController(animated: true)
         } catch {
             let error = error.localizedDescription
-            errorAlert(message: error)
+           errorAlert(message: error)
         }
-        
     }
     
     //MARK: - errorAlert(_:)

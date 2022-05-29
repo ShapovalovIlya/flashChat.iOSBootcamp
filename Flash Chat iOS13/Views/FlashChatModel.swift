@@ -6,9 +6,7 @@
 //  Copyright © 2022 Angela Yu. All rights reserved.
 //
 
-import UIKit
-import FirebaseAuth
-import FirebaseFirestore
+import Foundation
 
 struct FlashChatModel {
     
