@@ -11,8 +11,8 @@ import UIKit
 
 class RegisterViewController: UIViewController {
     
-    //MARK: - Privat Properties
-    private let presenter = RegisterViewPresenter()
+    //MARK: - Public Properties
+    var presenter: RegisterViewPresenterProtocol!
     
     //MARK: - IBOutlets
     @IBOutlet weak var emailTextfield: UITextField!
@@ -22,7 +22,6 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter.registerViewDelegate = self
     }
     
     //MARK: - IBActions
@@ -32,7 +31,7 @@ class RegisterViewController: UIViewController {
     
 }
 
-extension RegisterViewController: RegisterViewDelegate {
+extension RegisterViewController: RegisterViewProtocol {
     
     func didRegister() {
         // Navigate to the ChatViewController

@@ -9,22 +9,35 @@
 import Foundation
 import FirebaseAuth
 
-protocol RegisterViewDelegate {
+protocol RegisterViewProtocol: AnyObject {
     func didRegister()
     func didFailWithError(error: Error)
 }
 
-class RegisterViewPresenter {
+protocol RegisterViewPresenterProtocol: AnyObject {
+    init(view: RegisterViewProtocol, router: RouterProtocol)
+    func registration(email: String?, password: String?)
     
-    var registerViewDelegate: RegisterViewDelegate?
+}
+
+class RegisterViewPresenter: RegisterViewPresenterProtocol {
+    
+    weak var view: RegisterViewProtocol?
+    var router: RouterProtocol?
+    
+    required init(view: RegisterViewProtocol, router: RouterProtocol) {
+        self.view = view
+        self.router = router
+    }
     
     func registration(email: String?, password: String?) {
         guard let email = email, let password = password else { return }
-            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
+                guard let self = self else { return }
                 if let error = error {
-                    self.registerViewDelegate?.didFailWithError(error: error)
+                    self.view?.didFailWithError(error: error)
                 } else {
-                    self.registerViewDelegate?.didRegister()
+                    self.view?.didRegister()
                 }
             }
         
