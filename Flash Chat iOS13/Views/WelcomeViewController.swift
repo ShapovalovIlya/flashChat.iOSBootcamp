@@ -31,7 +31,7 @@ final class WelcomeViewController: UIViewController {
         button.tintColor = UIColor(named: "BrandBlue")
         button.backgroundColor = UIColor(named: "BrandLightBlue")
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(registerButtonTap), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -42,7 +42,7 @@ final class WelcomeViewController: UIViewController {
         button.tintColor = .white
         button.backgroundColor = .systemTeal
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(logInButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(logInButtonTap), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -73,11 +73,11 @@ final class WelcomeViewController: UIViewController {
         view.addSubview(logInButton)
     }
     
-    @objc private func registerButtonTapped() {
+    @objc private func registerButtonTap() {
         presenter.tapOnRegister()
     }
     
-    @objc private func logInButtonTapped() {
+    @objc private func logInButtonTap() {
         presenter.tapOnLogIn()
     }
     

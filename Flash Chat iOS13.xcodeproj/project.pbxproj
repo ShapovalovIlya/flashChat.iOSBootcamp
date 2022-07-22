@@ -24,6 +24,7 @@
 		86CB9DD62889D8660027696A /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CB9DD52889D8660027696A /* ModuleBuilder.swift */; };
 		86CB9DD82889E2310027696A /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CB9DD72889E2310027696A /* Router.swift */; };
 		86CB9DDA2889EFBE0027696A /* WelcomeViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CB9DD92889EFBE0027696A /* WelcomeViewPresenter.swift */; };
+		86CB9DDE288A85270027696A /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CB9DDD288A85270027696A /* UIColor+Extension.swift */; };
 		86DC3EB12830211500143B15 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86DC3EB02830211500143B15 /* GoogleService-Info.plist */; };
 		86DC3EB528317F0700143B15 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DC3EB428317F0700143B15 /* Constants.swift */; };
 		86DC3EB72831829100143B15 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DC3EB62831829100143B15 /* Message.swift */; };
@@ -53,6 +54,7 @@
 		86CB9DD52889D8660027696A /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		86CB9DD72889E2310027696A /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		86CB9DD92889EFBE0027696A /* WelcomeViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewPresenter.swift; sourceTree = "<group>"; };
+		86CB9DDD288A85270027696A /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		86DC3EB02830211500143B15 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		86DC3EB428317F0700143B15 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		86DC3EB62831829100143B15 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Message.swift; path = "Flash Chat iOS13/Message.swift"; sourceTree = SOURCE_ROOT; };
@@ -104,6 +106,7 @@
 				0B628193235DF03400E35CAF /* Views */,
 				86A5F785283D60D200B29F34 /* Presenter */,
 				0B628192235DF02000E35CAF /* Controllers */,
+				86CB9DDB288A84E70027696A /* Extensions */,
 				0B62817F235DEE8400E35CAF /* Assets.xcassets */,
 				0B628181235DEE8400E35CAF /* LaunchScreen.storyboard */,
 				0B628184235DEE8400E35CAF /* Info.plist */,
@@ -160,6 +163,14 @@
 				86CB9DD92889EFBE0027696A /* WelcomeViewPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		86CB9DDB288A84E70027696A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				86CB9DDD288A85270027696A /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D255E1A5CEDE0AEA9CE5FA1F /* Frameworks */ = {
@@ -295,6 +306,7 @@
 				0B628177235DEE8100E35CAF /* AppDelegate.swift in Sources */,
 				0B628179235DEE8100E35CAF /* SceneDelegate.swift in Sources */,
 				86C014EE28410A5C00FA06F3 /* LogInViewPresenter.swift in Sources */,
+				86CB9DDE288A85270027696A /* UIColor+Extension.swift in Sources */,
 				0B62818F235DF01000E35CAF /* LoginViewController.swift in Sources */,
 				86DC3EB528317F0700143B15 /* Constants.swift in Sources */,
 				86DC3EB72831829100143B15 /* Message.swift in Sources */,
