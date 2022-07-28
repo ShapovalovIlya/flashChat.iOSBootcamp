@@ -9,25 +9,42 @@
 import Foundation
 import FirebaseAuth
 
-protocol RegisterViewDelegate {
-    func didRegister()
+protocol RegisterViewProtocol: AnyObject {
     func didFailWithError(error: Error)
 }
 
-class RegisterViewPresenter {
+protocol RegisterViewPresenterProtocol: AnyObject {
+    init(view: RegisterViewProtocol, router: RouterProtocol)
+    /// Set registration with current user email and password
+    func registration(email: String?, password: String?)
+    /// Pop to WelcomeViewController
+    func popToRoot()
+}
+
+class RegisterViewPresenter: RegisterViewPresenterProtocol {
     
-    var registerViewDelegate: RegisterViewDelegate?
+    weak var view: RegisterViewProtocol?
+    var router: RouterProtocol?
+    
+    required init(view: RegisterViewProtocol, router: RouterProtocol) {
+        self.view = view
+        self.router = router
+    }
     
     func registration(email: String?, password: String?) {
         guard let email = email, let password = password else { return }
-            Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
+                guard let self = self else { return }
                 if let error = error {
-                    self.registerViewDelegate?.didFailWithError(error: error)
+                    self.view?.didFailWithError(error: error)
                 } else {
-                    self.registerViewDelegate?.didRegister()
+                    // Call moduleBuilder to create ChatViewController
                 }
             }
-        
+    }
+    
+    func popToRoot() {
+        router?.initialViewController()
     }
     
 }

@@ -73,9 +73,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5eY-1X-mTl"/>
-                    <connections>
-                        <outlet property="titleLabel" destination="y7D-jv-BlJ" id="7U9-Ah-qfi"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X0w-oB-wTX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -384,7 +381,7 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="IiZ-as-YC4"/>
+        <segue reference="oAy-9H-L71"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>

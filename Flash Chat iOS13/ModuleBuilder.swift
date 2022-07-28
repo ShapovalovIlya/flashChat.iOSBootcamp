@@ -9,5 +9,22 @@
 import UIKit
 
 protocol ModuleBuilderProtocol {
-    static func createWelcomeVC() -> UIViewController
+    func createWelcomeVC(router: RouterProtocol) -> UIViewController
+    func createRegisterVC(router: RouterProtocol) -> UIViewController
+}
+
+class ModuleBuilder: ModuleBuilderProtocol {
+    func createWelcomeVC(router: RouterProtocol) -> UIViewController {
+        let view = WelcomeViewController()
+        let presenter = WelcomeViewPresenter(router: router)
+        view.presenter = presenter
+        return view
+    }
+    
+    func createRegisterVC(router: RouterProtocol) -> UIViewController {
+        let view = RegisterViewController()
+        let presenter = RegisterViewPresenter(view: view, router: router)
+        view.presenter = presenter
+        return view
+    }
 }
