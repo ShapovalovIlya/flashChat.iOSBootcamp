@@ -10,14 +10,15 @@ import Foundation
 import FirebaseAuth
 
 protocol RegisterViewProtocol: AnyObject {
-    func didRegister()
     func didFailWithError(error: Error)
 }
 
 protocol RegisterViewPresenterProtocol: AnyObject {
     init(view: RegisterViewProtocol, router: RouterProtocol)
+    /// Set registration with current user email and password
     func registration(email: String?, password: String?)
-    
+    /// Pop to WelcomeViewController
+    func popToRoot()
 }
 
 class RegisterViewPresenter: RegisterViewPresenterProtocol {
@@ -37,10 +38,13 @@ class RegisterViewPresenter: RegisterViewPresenterProtocol {
                 if let error = error {
                     self.view?.didFailWithError(error: error)
                 } else {
-                    self.view?.didRegister()
+                    // Call moduleBuilder to create ChatViewController
                 }
             }
-        
+    }
+    
+    func popToRoot() {
+        router?.initialViewController()
     }
     
 }

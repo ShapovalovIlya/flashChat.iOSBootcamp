@@ -44,28 +44,36 @@ final class RegisterViewController: UIViewController {
         return button
     }()
     
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.tintColor = .brandBlue
+        button.addTarget(self, action: #selector(backButtonTap), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
-        setupNavigationBar()
         setConstraints()
     }
     
    //MARK: - Private methods
     private func setupView() {
-        view.backgroundColor = UIColor(named: "BrandLightBlue")
+        view.backgroundColor = .brandLightBlue
+        view.addSubview(backButton)
         view.addSubview(emailTextField)
         view.addSubview(passwordTextfield)
         view.addSubview(registerButton)
     }
     
-    private func setupNavigationBar() {
-        
+    @objc private func backButtonTap() {
+        presenter.popToRoot()
     }
     
-    // Register button tapped
     @objc private func registerButtonTap() {
         presenter.registration(email: emailTextField.text, password: passwordTextfield.text)
     }
@@ -74,11 +82,6 @@ final class RegisterViewController: UIViewController {
 
 //MARK: - Register View Protocol
 extension RegisterViewController: RegisterViewProtocol {
-    func didRegister() {
-        // Navigate to the ChatViewController
-        self.performSegue(withIdentifier: K.registerSegue, sender: self)
-    }
-    
     func didFailWithError(error: Error) {
         let alertController = UIAlertController(title: "Warning!", message: error.localizedDescription, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "Ok", style: .default)
@@ -88,23 +91,27 @@ extension RegisterViewController: RegisterViewProtocol {
 }
 
 //MARK: - Set Constraints
-extension RegisterViewController {
-    private func setConstraints() {
-        // Set emailTextField constraints
+private extension RegisterViewController {
+     func setConstraints() {
+         NSLayoutConstraint.activate([
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
+         ])
+        
         NSLayoutConstraint.activate([
             emailTextField.heightAnchor.constraint(equalToConstant: view.frame.height / 14),
             emailTextField.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
             emailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             emailTextField.bottomAnchor.constraint(equalTo: view.centerYAnchor, constant: emailTextField.frame.height + 5)
         ])
-        // Set passwordTextField constraints
+        
         NSLayoutConstraint.activate([
             passwordTextfield.heightAnchor.constraint(equalToConstant: view.frame.height / 14),
             passwordTextfield.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
             passwordTextfield.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             passwordTextfield.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -passwordTextfield.frame.height + 10)
         ])
-        // Set registerButton constraints
+        
         NSLayoutConstraint.activate([
             registerButton.topAnchor.constraint(equalTo: passwordTextfield.bottomAnchor, constant: 10),
             registerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),

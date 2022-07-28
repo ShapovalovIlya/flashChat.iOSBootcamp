@@ -14,8 +14,11 @@ protocol RouterMain {
 }
 
 protocol RouterProtocol: RouterMain {
+    /// Routing to WelcomeViewController
     func initialViewController()
+    /// Routing to RegisterViewController
     func register()
+    /// Routing to LogInViewController
     func logIn()
 }
 
@@ -27,19 +30,19 @@ class Router: RouterProtocol {
         self.navigationController = navigationController
         self.moduleBuilder = moduleBuilder
     }
-    /// Routing to welcomeViewController
+    
     func initialViewController() {
         guard let navigationController = navigationController else { return }
         guard let welcomeViewController = moduleBuilder?.createWelcomeVC(router: self) else { return }
         navigationController.viewControllers = [welcomeViewController]
     }
-    /// Routing to register view
+    
     func register() {
         guard let navigationController = navigationController else { return }
         guard let registerViewController = moduleBuilder?.createRegisterVC(router: self) else { return }
         navigationController.viewControllers = [registerViewController]
     }
-    /// Routing to log in view
+    
     func logIn() {
         guard let navigationController = navigationController else { return }
 
